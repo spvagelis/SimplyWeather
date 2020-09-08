@@ -29,10 +29,10 @@ func fetchCurrentWeather(completion: @escaping WeatherResponseCompletion) {
             return
         }
         print("Data : \(String(data: data, encoding: .utf8))")
-        if let weather1 = self.parseJSON(weatherData: data) {
+        if let weather = self.parseJSON(weatherData: data) {
             
             DispatchQueue.main.async {
-                completion(weather1)
+                completion(weather)
             }
         }
     }

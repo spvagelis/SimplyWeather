@@ -17,6 +17,9 @@
 		09810B3E24EEA42800532498 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09810B3D24EEA42800532498 /* CurrentWeather.swift */; };
 		09810B4124EEDBA100532498 /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09810B4024EEDBA100532498 /* WeatherApi.swift */; };
 		09810B4324EEDD1D00532498 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09810B4224EEDD1D00532498 /* Location.swift */; };
+		09AE1F3624F653D200EE2428 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE1F3524F653D200EE2428 /* WeatherCell.swift */; };
+		09AE1F3824F6589A00EE2428 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE1F3724F6589A00EE2428 /* Forecast.swift */; };
+		09AE1F3A24F65C9700EE2428 /* ForecastApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE1F3924F65C9700EE2428 /* ForecastApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		09810B3D24EEA42800532498 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		09810B4024EEDBA100532498 /* WeatherApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApi.swift; sourceTree = "<group>"; };
 		09810B4224EEDD1D00532498 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		09AE1F3524F653D200EE2428 /* WeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		09AE1F3724F6589A00EE2428 /* Forecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
+		09AE1F3924F65C9700EE2428 /* ForecastApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,13 +73,13 @@
 				09810B3A24EEA3E300532498 /* Model */,
 				09810B3B24EEA3F000532498 /* View */,
 				09810B3C24EEA3FA00532498 /* Controller */,
-				09810B2324ED963D00532498 /* AppDelegate.swift */,
-				09810B2524ED963D00532498 /* SceneDelegate.swift */,
 				09810B2724ED963D00532498 /* WeatherViewController.swift */,
-				09810B2924ED963D00532498 /* Main.storyboard */,
 				09810B3F24EEDB8700532498 /* Services */,
 				09810B3724EE9FF800532498 /* Utilities */,
 				09810B2C24ED963F00532498 /* Assets.xcassets */,
+				09810B2324ED963D00532498 /* AppDelegate.swift */,
+				09810B2924ED963D00532498 /* Main.storyboard */,
+				09810B2524ED963D00532498 /* SceneDelegate.swift */,
 				09810B2E24ED963F00532498 /* LaunchScreen.storyboard */,
 				09810B3124ED963F00532498 /* Info.plist */,
 			);
@@ -93,6 +99,7 @@
 			children = (
 				09810B3D24EEA42800532498 /* CurrentWeather.swift */,
 				09810B4224EEDD1D00532498 /* Location.swift */,
+				09AE1F3724F6589A00EE2428 /* Forecast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -100,6 +107,7 @@
 		09810B3B24EEA3F000532498 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				09AE1F3524F653D200EE2428 /* WeatherCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -115,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				09810B4024EEDBA100532498 /* WeatherApi.swift */,
+				09AE1F3924F65C9700EE2428 /* ForecastApi.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -194,6 +203,9 @@
 				09810B3E24EEA42800532498 /* CurrentWeather.swift in Sources */,
 				09810B2424ED963D00532498 /* AppDelegate.swift in Sources */,
 				09810B2624ED963D00532498 /* SceneDelegate.swift in Sources */,
+				09AE1F3824F6589A00EE2428 /* Forecast.swift in Sources */,
+				09AE1F3A24F65C9700EE2428 /* ForecastApi.swift in Sources */,
+				09AE1F3624F653D200EE2428 /* WeatherCell.swift in Sources */,
 				09810B3924EEA01B00532498 /* Constants.swift in Sources */,
 				09810B4124EEDBA100532498 /* WeatherApi.swift in Sources */,
 				09810B4324EEDD1D00532498 /* Location.swift in Sources */,

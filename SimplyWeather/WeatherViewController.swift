@@ -22,6 +22,13 @@ class WeatherViewController: UIViewController {
     let locationManager = CLLocationManager()
     var currentLocation = CLLocation()
     var weather = WeatherApi()
+    var forecast = ForecastApi()
+    var myForecast: Forecast!
+    var myList = [List]()
+    var loading = true
+    var myLat: Double = 0.0
+    var myLon: Double = 0.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,7 +41,8 @@ class WeatherViewController: UIViewController {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startMonitoringSignificantLocationChanges()
         
-    }
+
+   }
 }
 
 //MARK: - UITableViewDelegate, UITableViewDataSource
@@ -43,13 +51,25 @@ extension WeatherViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       
+        if loading {
+        return 1
+        } else {
+            return myForecast.list.count
+        }
         
-        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath)
-        return cell
+        
+        print("AT CELL myforecast: \(myForecast)")
+    
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "WeatherCell", for: indexPath) as? WeatherCell {
+            cell.updateCellUI(forecast: myForecast, for: indexPath)
+            return cell
+            }
+        
+        return UITableViewCell()
     }
 }
 
@@ -75,8 +95,7 @@ extension WeatherViewController: CLLocationManagerDelegate {
             currentLocation = locationManager.location!
             Location.sharedInstance.latitude = currentLocation.coordinate.latitude
             Location.sharedInstance.longitude = currentLocation.coordinate.longitude
-            print(Location.sharedInstance.latitude)
-            
+                       
             weather.fetchCurrentWeather { currentWeather in
                 
                 if let currentWeather = currentWeather {
@@ -90,10 +109,27 @@ extension WeatherViewController: CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
             
         }
+        
+        forecast.fetchForecast { (forecast) in
+            if let forecast = forecast {
+                
+                self.myForecast = forecast
+                self.loading = false
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    return
+                }
+
+            } else {
+
+                self.locationManager.requestWhenInUseAuthorization()
+            }
+
+        }
     }
     
     
-    func getDateFromTimeStamp(timeStamp : Double) -> String {
+    func getFullDateFromTimeStamp(timeStamp: Double) -> String {
 
         let date = NSDate(timeIntervalSince1970: timeStamp)
 
@@ -104,18 +140,19 @@ extension WeatherViewController: CLLocationManagerDelegate {
         return dateString
     }
     
+    
     func updateUI(currentWeather: CurrentWeather) {
         
         print("current = \(currentWeather)")
         let iconImageName = currentWeather.weather[0].icon
         self.currentWeatherImage.image = UIImage(named: iconImageName)
         let timeStamp = currentWeather.date
-        let dateInString = self.getDateFromTimeStamp(timeStamp: timeStamp)
+        let dateInString = self.getFullDateFromTimeStamp(timeStamp: timeStamp)
         self.dateLabel.text = dateInString
-        self.currentTempLabel.text = String(currentWeather.main.temp)
+        self.currentTempLabel.text = String(format: "%.0f", currentWeather.main.temp)
         self.cityNameLabel.text = currentWeather.cityName
         self.currentConditionWeatherLabel.text = currentWeather.weather[0].description
-        
+       
     }
 }
 
